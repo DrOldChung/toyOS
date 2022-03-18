@@ -149,7 +149,7 @@ void HariMain()
 	io_sti();						
 
 	init_fifo32_overload(&uniquefifo, 128, fifobuf, NULL);	
-
+	
 	init_pit();							
 	init_keyboard_controll(&uniquefifo, 256);
 	enable_mouse(&uniquefifo, 512, &mDesc);

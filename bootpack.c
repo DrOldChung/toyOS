@@ -100,9 +100,7 @@ void HariMain()
 	tss_b.iomap = 0x40000000;
 
 	TASK* task_main;		//主要进程
-	TASK* task_other[3];	//另外3个进程
 	TASK* task_cmd;			//控制台进程
-	TASK* task_cons[MAXCONSOLES];
 
 	//Timer
 	TIMER* timer_ts;//task switch	
@@ -133,7 +131,7 @@ void HariMain()
 
 	char bgAndmouseColor = color_008484;
 	char str[STRMAXLEN];
-    char mouseCursor[256];
+   	char mouseCursor[256];
 
 	//buffer setting
 	unsigned char mousebuf[128],keybuf[32]; 

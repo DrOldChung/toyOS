@@ -168,11 +168,11 @@ void HariMain()
 	memCapacity /= (1024*1024);
 
 	//Color
-	init_color();//初始化颜色板
+	init_color();
 
 	
 	//Sheet
-	shtctl = init_sheetControll(memManger,binfo->vram,binfo->screenX,binfo->screenY);//初始化sheet层级关系 控制器初始化
+	shtctl = init_sheetControll(memManger,binfo->vram,binfo->screenX,binfo->screenY);
 	
 	task_main = init_task(memManger);
 	uniquefifo.task = task_main;
@@ -189,13 +189,13 @@ void HariMain()
 	taskbar(bufBack,binfo->screenX,binfo->screenY);
 
 	/*Console*/
-	key_win = open_console(shtctl,memCapacity);//默认打开一个控制台
+	key_win = open_console(shtctl,memCapacity);
 
 	/*Mouse*/
 	shtMouse = sheet_alloc(shtctl);
-	sheet_buffer_set(shtMouse,bufMouseLayer,16,16,AERO);//99表示透明
-	init_mouse_cursor(bufMouseLayer,AERO);				//鼠标参数初始化
-	mouseX = (binfo->screenX - 16) / 2;					//显示在中央
+	sheet_buffer_set(shtMouse,bufMouseLayer,16,16,AERO);
+	init_mouse_cursor(bufMouseLayer,AERO);				
+	mouseX = (binfo->screenX - 16) / 2;					
 	mouseY = (binfo->screenY - 28 - 16) / 2;
 
 	/*Position*/
@@ -327,10 +327,9 @@ void HariMain()
 
 				/*Enter*/
 				if(allbufData == 0x1c + 256 && key_win != NULL){
-					if(key_win != shtWindow){//当前窗口按下回车发送消息给cmd窗口
-						put_buffer_fifo32(&key_win->task->fifo,10 + 256);		//回车ASCII码：10
+					if(key_win != shtWindow){
+						put_buffer_fifo32(&key_win->task->fifo,10 + 256);		
 					}
-
 				}
 
 				/*Tab*/
@@ -379,7 +378,7 @@ void HariMain()
 				}
 
 				/*CapsLock*/
-				if(allbufData == 0x3a + 256){//模拟器显示capslock为：0xba
+				if(allbufData == 0x3a + 256){
 					key_leds ^= 4;	
 					put_buffer_fifo32(&keycmdfifo,KEYCMD_LED);
 					put_buffer_fifo32(&keycmdfifo,key_leds);
@@ -478,7 +477,7 @@ void HariMain()
 										if(x >= 3 && x < sht->bxsize - 3 && y >= 3 && y < 21){
 											mmx = mouseX;
 											mmy = mouseY;
-											mmx_tmp = sht->vramX0;//保存移动前的值
+											mmx_tmp = sht->vramX0;
 											new_wy = sht->vramY0;
 										}
 

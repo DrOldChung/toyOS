@@ -29,7 +29,7 @@ void init_pit(){
     for(idx = 0;idx<MAX_TIMER;++idx){
         timerctl.timer[idx].flags = TIMER_FLAGS_NOT_USING; 
     }
-
+    
     sentryTimer = timer_alloc();    
     sentryTimer->timeout = 0xffffffff;
     sentryTimer->flags = TIMER_FLAGS_USING;             
